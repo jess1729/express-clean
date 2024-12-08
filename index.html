@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPRESS CLEAN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cabeçalho com logo e navegação -->
+    <header>
+        <div class="logo">
+            <img src="img/baixados.jpg" alt="express clean">
+            <h1>EXPRESS CLEAN</h1>
+        </div>
+        <nav>
+            <ul>
+                <!-- Links de navegação -->
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção de conteúdo -->
+    <main id="home">
+        <img src="img/limpeza-pos-obra.webp " alt="Limpeza">
+        <h1>EXPRESS CLEAN</h1>
+        <h3>Limpeza detalhada pós-obra</h3>
+    </main>
+
+    <!-- Seção sobre a empresa -->
+    <section id="sobre" class="section">
+        <h2>Quem Somos</h2>
+        <p>A EXPRESS CLEAN é especializada em serviços de limpeza detalhada pós-obra, oferecendo soluções completas para garantir que seu ambiente esteja totalmente livre de resíduos e preparado para uso imediato.</p>
+        <p>Com uma equipe treinada e equipamentos de última geração, nos dedicamos a limpar minuciosamente cada canto, eliminando poeira, sujeiras e detritos deixados pela obra.</p>
+    </section>
+
+    <!-- Seção de serviços -->
+    <section id="servicos" class="section">
+        <h2>Nossos Serviços</h2>
+        <p>A EXPRESS CLEAN oferece uma gama completa de serviços de limpeza pós-obra, focadas em garantir que seu ambiente fique impecável após a conclusão de reformas ou construções.</p>
+        <ul>
+            <li>Remoção de resíduos de materiais como cimento e tinta.</li>
+            <li>Limpeza detalhada de pisos, paredes e janelas.</li>
+            <li>Limpeza de vidros e superfícies com desinfecção.</li>
+        </ul>
+    </section>
+
+    <!-- Seção de contato -->
+    <section id="contato" class="section">
+        <h2>Entre em Contato</h2>
+        <form id="formContato">
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+            <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+            <button type="submit">Enviar Mensagem</button>
+        </form>
+        <div id="mensagemConfirmacao" style="display:none;">
+            <p>Obrigado por entrar em contato! Responderemos o mais breve possível.</p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 EXPRESS CLEAN. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Navegação suave para links do menu
+        document.querySelectorAll("nav ul li a").forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute("href").slice(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 60, // Ajuste para evitar sobreposição pelo cabeçalho
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Formulário: Confirmação de envio
+        const form = document.getElementById("formContato");
+        const mensagemConfirmacao = document.getElementById("mensagemConfirmacao");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // Impede o envio real para simular o envio
+
+            // Mostrar mensagem de confirmação
+            mensagemConfirmacao.style.display = "block";
+
+            // Limpar o formulário
+            form.reset();
+
+            // Esconder a mensagem após 5 segundos
+            setTimeout(() => {
+                mensagemConfirmacao.style.display = "none";
+            }, 5000);
+        });
+
+        // Mensagem dinâmica no cabeçalho (opcional)
+        const headerMessage = document.querySelector("header h1");
+        const messages = ["Bem-vindo ao EXPRESS CLEAN!", "Sua solução em limpeza pós-obra!", "Deixe a limpeza conosco!"];
+        let currentMessageIndex = 0;
+
+        function changeHeaderMessage() {
+            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            headerMessage.textContent = messages[currentMessageIndex];
+        }
+
+        // Trocar mensagem a cada 5 segundos
+        setInterval(changeHeaderMessage, 5000);
+    </script>
+</body>
+</html>
